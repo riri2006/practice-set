@@ -3,6 +3,7 @@ from langgraph.graph import StateGraph, START, END
 
 class Statee(BaseModel):
     name : str
+    snack: str
 
 def Hie(Statee):
     print("Hello , ", Statee.name)
@@ -10,14 +11,19 @@ def Hie(Statee):
 def Bie(Statee):
     print("Byee , ", Statee.name)
 
+def Eat(Statee):
+    print(Statee.name,"eats", Statee.snack)
+
 graph = StateGraph(Statee)
 
 graph.add_node("Node1",Hie)
 graph.add_node("Node2",Bie)
+graph.add_node("Node3",Eat)
 
 graph.add_edge(START,"Node1")
 graph.add_edge("Node1","Node2")
-graph.add_edge("Node2",END)
+graph.add_edge("Node2","Node3")
+
 
 
 demo = graph.compile()
